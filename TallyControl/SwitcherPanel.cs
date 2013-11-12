@@ -40,7 +40,7 @@ using BMDSwitcherAPI;
 
 namespace SwitcherPanelCSharp
 {
-    public partial class SwitcherPanel : Form
+    public partial class TallyControl : Form
     {
         private IBMDSwitcherDiscovery m_switcherDiscovery;
         private IBMDSwitcher m_switcher;
@@ -51,7 +51,7 @@ namespace SwitcherPanelCSharp
 
         private List<InputMonitor> m_inputMonitors = new List<InputMonitor>();
 
-        public SwitcherPanel()
+        public TallyControl()
         {
             InitializeComponent();
 

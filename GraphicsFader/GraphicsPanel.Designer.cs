@@ -1,6 +1,6 @@
 ﻿namespace SwitcherPanelCSharp
 {
-    partial class SwitcherPanel
+    partial class GraphicsControl
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxIP = new System.Windows.Forms.TextBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxSwitcherName = new System.Windows.Forms.TextBox();
-            this.serialTally = new System.IO.Ports.SerialPort(this.components);
+            this.serialTally = new System.IO.Ports.SerialPort();
             this.btnFade = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -145,7 +144,7 @@
             this.btnSet.UseVisualStyleBackColor = true;
             this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
-            // SwitcherPanel
+            // GraphicsControl
             // 
             this.AcceptButton = this.buttonConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,8 +160,8 @@
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textBoxIP);
             this.Controls.Add(this.label1);
-            this.Name = "SwitcherPanel";
-            this.Text = "Switcher Panel";
+            this.Name = "GraphicsControl";
+            this.Text = "Graphics Control";
             this.TopMost = true;
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace SwitcherPanelCSharp
 {
-    partial class SwitcherPanel
+    partial class TallyControl
     {
         /// <summary>
         /// Required designer variable.
@@ -266,7 +266,7 @@
             this.lblLamp1.Text = "1";
             this.lblLamp1.Click += new System.EventHandler(this.lblLamp1_Click);
             // 
-            // SwitcherPanel
+            // TallyControl
             // 
             this.AcceptButton = this.buttonConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,8 +281,8 @@
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textBoxIP);
             this.Controls.Add(this.label1);
-            this.Name = "SwitcherPanel";
-            this.Text = "Switcher Panel";
+            this.Name = "TallyControl";
+            this.Text = "Tally Control";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

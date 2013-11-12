@@ -15,7 +15,7 @@ namespace SwitcherPanelCSharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SwitcherPanel());
+            Application.Run(new GraphicsControl());
         }
     }
 }
