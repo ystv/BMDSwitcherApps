@@ -365,6 +365,11 @@ namespace SwitcherPanelCSharp
             MessageBox.Show("Testing lamps");
 
             serialTally.Write("<dark>\n");
+
+            if (m_mixEffectBlock1 != null)
+            {
+                UpdateProgramButtonSelection();
+            }
         }
 
         private void cmbTallyChannel1_SelectedIndexChanged(object sender, EventArgs e)
