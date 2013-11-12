@@ -1,0 +1,1 @@
+You need to have the Blackmagic ATEM Switchers (or Desktop Video) software installed or this won't work!
