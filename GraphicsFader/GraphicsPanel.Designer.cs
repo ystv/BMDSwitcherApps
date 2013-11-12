@@ -163,6 +163,7 @@
             this.Controls.Add(this.label1);
             this.Name = "SwitcherPanel";
             this.Text = "Switcher Panel";
+            this.TopMost = true;
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
