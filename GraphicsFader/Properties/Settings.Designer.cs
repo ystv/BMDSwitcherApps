@@ -22,5 +22,17 @@ namespace GraphicsFader.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        public float Framerate {
+            get {
+                return ((float)(this["Framerate"]));
+            }
+            set {
+                this["Framerate"] = value;
+            }
+        }
     }
 }

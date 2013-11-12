@@ -38,6 +38,9 @@
             this.btnFade = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFadeTime = new System.Windows.Forms.TextBox();
+            this.btnSet = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +99,7 @@
             this.btnFade.TabIndex = 5;
             this.btnFade.Text = "Fade In";
             this.btnFade.UseVisualStyleBackColor = true;
+            this.btnFade.TextChanged += new System.EventHandler(this.textFadeTime_Validate);
             this.btnFade.Click += new System.EventHandler(this.btnFade_Click);
             // 
             // statusStrip1
@@ -113,7 +117,33 @@
             this.tsStatus.Name = "tsStatus";
             this.tsStatus.Size = new System.Drawing.Size(88, 17);
             this.tsStatus.Text = "Not Connected";
-            this.tsStatus.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Transition Time (seconds):";
+            // 
+            // txtFadeTime
+            // 
+            this.txtFadeTime.Location = new System.Drawing.Point(161, 70);
+            this.txtFadeTime.Name = "txtFadeTime";
+            this.txtFadeTime.Size = new System.Drawing.Size(100, 20);
+            this.txtFadeTime.TabIndex = 8;
+            this.txtFadeTime.TextChanged += new System.EventHandler(this.textFadeTime_Validate);
+            // 
+            // btnSet
+            // 
+            this.btnSet.Location = new System.Drawing.Point(268, 68);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(75, 23);
+            this.btnSet.TabIndex = 9;
+            this.btnSet.Text = "Set";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // SwitcherPanel
             // 
@@ -121,6 +151,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 258);
+            this.Controls.Add(this.btnSet);
+            this.Controls.Add(this.txtFadeTime);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnFade);
             this.Controls.Add(this.textBoxSwitcherName);
@@ -148,6 +181,9 @@
         private System.Windows.Forms.Button btnFade;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsStatus;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtFadeTime;
+        private System.Windows.Forms.Button btnSet;
     }
 }
 

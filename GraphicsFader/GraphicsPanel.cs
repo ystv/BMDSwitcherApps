@@ -66,6 +66,7 @@ namespace SwitcherPanelCSharp
             m_dskMonitor = new DSKMonitor();
             m_dskMonitor.OnAirChanged += new SwitcherEventHandler((s, a) => this.Invoke((Action)(() => UpdateFadeButtonState())));
             m_dskMonitor.TransitionChanged += new SwitcherEventHandler((s, a) => this.Invoke((Action)(() => UpdateFadeButtonState())));
+            m_dskMonitor.RateChanged += new SwitcherEventHandler((s, a) => this.Invoke((Action)(() => UpdateTransitionRate())));
 
             m_switcherDiscovery = new CBMDSwitcherDiscovery();
             if (m_switcherDiscovery == null)
@@ -111,8 +112,10 @@ namespace SwitcherPanelCSharp
             // Enable buttons and stuff
             btnFade.Enabled = true;
             tsStatus.Text = "Connected!";
+            btnSet.Enabled = true;
 
             UpdateFadeButtonState();
+            UpdateTransitionRate();
         }
 
         private void SwitcherDisconnected()
@@ -122,6 +125,7 @@ namespace SwitcherPanelCSharp
 
             btnFade.Enabled = false;
             tsStatus.Text = "Not Connected";
+            btnSet.Enabled = false;
 
             if (m_dsk1 != null)
             {
@@ -176,6 +180,22 @@ namespace SwitcherPanelCSharp
             catch (Exception)
             {
                 return;
+            }
+        }
+
+        private void UpdateTransitionRate()
+        {
+            try
+            {
+                uint newrate;
+                m_dsk1.GetRate(out newrate);
+
+                float newtime = (float)(newrate / GraphicsFader.Properties.Settings.Default.Framerate);
+                txtFadeTime.Text = newtime.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting new rate. Error: " + ex.Message);
             }
         }
 
@@ -245,9 +265,36 @@ namespace SwitcherPanelCSharp
             }
         }
 
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        private void textFadeTime_Validate(object sender, EventArgs e)
         {
+            float newtime;
+            if (float.TryParse(txtFadeTime.Text, out newtime) && newtime >= 0 &&
+                newtime < (255 / GraphicsFader.Properties.Settings.Default.Framerate))
+            {
+                txtFadeTime.BackColor = Color.White;
+                btnSet.Enabled = true;
+            }
+            else
+            {
+                txtFadeTime.BackColor = Color.PaleVioletRed;
+                btnSet.Enabled = false;
+            }
+        }
 
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            float newtime;
+            if (float.TryParse(txtFadeTime.Text, out newtime) && newtime >= 0 &&
+                newtime < (255 / GraphicsFader.Properties.Settings.Default.Framerate))
+            {
+                txtFadeTime.BackColor = Color.White;
+                uint newframes = (uint)(newtime * GraphicsFader.Properties.Settings.Default.Framerate);
+                m_dsk1.SetRate(newframes);
+            }
+            else
+            {
+                txtFadeTime.BackColor = Color.PaleVioletRed;
+            }
         }
     }
 }

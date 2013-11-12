@@ -58,6 +58,7 @@ namespace SwitcherPanelCSharp
         // Events:
         public event SwitcherEventHandler OnAirChanged;
         public event SwitcherEventHandler TransitionChanged;
+        public event SwitcherEventHandler RateChanged;
 
         public DSKMonitor()
         {
@@ -78,6 +79,10 @@ namespace SwitcherPanelCSharp
                 case _BMDSwitcherDownstreamKeyEventType.bmdSwitcherDownstreamKeyEventTypeIsTransitioningChanged:
                     if (TransitionChanged != null)
                         TransitionChanged(this, null);
+                    break;
+                case _BMDSwitcherDownstreamKeyEventType.bmdSwitcherDownstreamKeyEventTypeRateChanged:
+                    if (RateChanged != null)
+                        RateChanged(this, null);
                     break;
                 default:
                     // No action
