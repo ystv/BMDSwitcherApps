@@ -178,7 +178,7 @@ namespace SwitcherPanelCSharp
             lblLamp4.BackColor = Color.DarkGray;
 
             // Work out which Tally channel to drive
-            int channelno = 0;
+            int channelno = -1;
             switch (programId)
             {
                 case 5:
@@ -198,8 +198,6 @@ namespace SwitcherPanelCSharp
                     lblLamp4.BackColor = Color.Red;
                     break;
                 default:
-                    MessageBox.Show("Where the hell did that channel " + 
-                        programId.ToString() + " come from??");
                     break;
             }
 
