@@ -1,1 +1,1 @@
-You need to have the Blackmagic ATEM Switchers (or Desktop Video) software installed or this won't work!
+You need to have the Blackmagic ATEM Switchers software installed or this won't work and will unhappily crash on launch!
