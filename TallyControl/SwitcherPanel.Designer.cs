@@ -40,16 +40,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLampTest = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.serialTally = new System.IO.Ports.SerialPort(this.components);
+            this.pnlChannelDropDowns = new System.Windows.Forms.Panel();
             this.cmbTallyChannel4 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel3 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel2 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel1 = new System.Windows.Forms.ComboBox();
+            this.pnlLampLabels = new System.Windows.Forms.Panel();
             this.lblLamp4 = new System.Windows.Forms.Label();
             this.lblLamp3 = new System.Windows.Forms.Label();
             this.lblLamp2 = new System.Windows.Forms.Label();
             this.lblLamp1 = new System.Windows.Forms.Label();
-            this.serialTally = new System.IO.Ports.SerialPort(this.components);
             this.panel1.SuspendLayout();
+            this.pnlChannelDropDowns.SuspendLayout();
+            this.pnlLampLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -105,7 +109,6 @@
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Tally Port:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // cmbPort
             // 
@@ -127,16 +130,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pnlLampLabels);
+            this.panel1.Controls.Add(this.pnlChannelDropDowns);
             this.panel1.Controls.Add(this.btnLampTest);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.cmbTallyChannel4);
-            this.panel1.Controls.Add(this.cmbTallyChannel3);
-            this.panel1.Controls.Add(this.cmbTallyChannel2);
-            this.panel1.Controls.Add(this.cmbTallyChannel1);
-            this.panel1.Controls.Add(this.lblLamp4);
-            this.panel1.Controls.Add(this.lblLamp3);
-            this.panel1.Controls.Add(this.lblLamp2);
-            this.panel1.Controls.Add(this.lblLamp1);
             this.panel1.Location = new System.Drawing.Point(15, 105);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(328, 141);
@@ -161,6 +158,17 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Assigned Channel:";
             // 
+            // pnlChannelDropDowns
+            // 
+            this.pnlChannelDropDowns.Controls.Add(this.cmbTallyChannel4);
+            this.pnlChannelDropDowns.Controls.Add(this.cmbTallyChannel3);
+            this.pnlChannelDropDowns.Controls.Add(this.cmbTallyChannel2);
+            this.pnlChannelDropDowns.Controls.Add(this.cmbTallyChannel1);
+            this.pnlChannelDropDowns.Location = new System.Drawing.Point(107, 46);
+            this.pnlChannelDropDowns.Name = "pnlChannelDropDowns";
+            this.pnlChannelDropDowns.Size = new System.Drawing.Size(200, 32);
+            this.pnlChannelDropDowns.TabIndex = 10;
+            // 
             // cmbTallyChannel4
             // 
             this.cmbTallyChannel4.FormattingEnabled = true;
@@ -171,11 +179,10 @@
             "4",
             "5",
             "6"});
-            this.cmbTallyChannel4.Location = new System.Drawing.Point(264, 54);
+            this.cmbTallyChannel4.Location = new System.Drawing.Point(155, 6);
             this.cmbTallyChannel4.Name = "cmbTallyChannel4";
             this.cmbTallyChannel4.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel4.TabIndex = 7;
-            this.cmbTallyChannel4.SelectedIndexChanged += new System.EventHandler(this.cmbTallyChannel4_SelectedIndexChanged);
+            this.cmbTallyChannel4.TabIndex = 11;
             // 
             // cmbTallyChannel3
             // 
@@ -187,11 +194,10 @@
             "4",
             "5",
             "6"});
-            this.cmbTallyChannel3.Location = new System.Drawing.Point(215, 54);
+            this.cmbTallyChannel3.Location = new System.Drawing.Point(106, 6);
             this.cmbTallyChannel3.Name = "cmbTallyChannel3";
             this.cmbTallyChannel3.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel3.TabIndex = 6;
-            this.cmbTallyChannel3.SelectedIndexChanged += new System.EventHandler(this.cmbTallyChannel3_SelectedIndexChanged);
+            this.cmbTallyChannel3.TabIndex = 10;
             // 
             // cmbTallyChannel2
             // 
@@ -203,11 +209,10 @@
             "4",
             "5",
             "6"});
-            this.cmbTallyChannel2.Location = new System.Drawing.Point(165, 54);
+            this.cmbTallyChannel2.Location = new System.Drawing.Point(56, 6);
             this.cmbTallyChannel2.Name = "cmbTallyChannel2";
             this.cmbTallyChannel2.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel2.TabIndex = 5;
-            this.cmbTallyChannel2.SelectedIndexChanged += new System.EventHandler(this.cmbTallyChannel2_SelectedIndexChanged);
+            this.cmbTallyChannel2.TabIndex = 9;
             // 
             // cmbTallyChannel1
             // 
@@ -219,52 +224,61 @@
             "4",
             "5",
             "6"});
-            this.cmbTallyChannel1.Location = new System.Drawing.Point(115, 54);
+            this.cmbTallyChannel1.Location = new System.Drawing.Point(6, 6);
             this.cmbTallyChannel1.Name = "cmbTallyChannel1";
             this.cmbTallyChannel1.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel1.TabIndex = 4;
-            this.cmbTallyChannel1.SelectedIndexChanged += new System.EventHandler(this.cmbTallyChannel1_SelectedIndexChanged);
+            this.cmbTallyChannel1.TabIndex = 8;
+            // 
+            // pnlLampLabels
+            // 
+            this.pnlLampLabels.Controls.Add(this.lblLamp4);
+            this.pnlLampLabels.Controls.Add(this.lblLamp3);
+            this.pnlLampLabels.Controls.Add(this.lblLamp2);
+            this.pnlLampLabels.Controls.Add(this.lblLamp1);
+            this.pnlLampLabels.Location = new System.Drawing.Point(105, 7);
+            this.pnlLampLabels.Name = "pnlLampLabels";
+            this.pnlLampLabels.Size = new System.Drawing.Size(200, 37);
+            this.pnlLampLabels.TabIndex = 11;
             // 
             // lblLamp4
             // 
             this.lblLamp4.AutoSize = true;
             this.lblLamp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp4.Location = new System.Drawing.Point(269, 19);
+            this.lblLamp4.Location = new System.Drawing.Point(164, 4);
             this.lblLamp4.Name = "lblLamp4";
             this.lblLamp4.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp4.TabIndex = 3;
+            this.lblLamp4.TabIndex = 7;
             this.lblLamp4.Text = "4";
             // 
             // lblLamp3
             // 
             this.lblLamp3.AutoSize = true;
             this.lblLamp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp3.Location = new System.Drawing.Point(221, 19);
+            this.lblLamp3.Location = new System.Drawing.Point(116, 4);
             this.lblLamp3.Name = "lblLamp3";
             this.lblLamp3.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp3.TabIndex = 2;
+            this.lblLamp3.TabIndex = 6;
             this.lblLamp3.Text = "3";
             // 
             // lblLamp2
             // 
             this.lblLamp2.AutoSize = true;
             this.lblLamp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp2.Location = new System.Drawing.Point(171, 19);
+            this.lblLamp2.Location = new System.Drawing.Point(66, 4);
             this.lblLamp2.Name = "lblLamp2";
             this.lblLamp2.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp2.TabIndex = 1;
+            this.lblLamp2.TabIndex = 5;
             this.lblLamp2.Text = "2";
             // 
             // lblLamp1
             // 
             this.lblLamp1.AutoSize = true;
             this.lblLamp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp1.Location = new System.Drawing.Point(121, 19);
+            this.lblLamp1.Location = new System.Drawing.Point(16, 4);
             this.lblLamp1.Name = "lblLamp1";
             this.lblLamp1.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp1.TabIndex = 0;
+            this.lblLamp1.TabIndex = 4;
             this.lblLamp1.Text = "1";
-            this.lblLamp1.Click += new System.EventHandler(this.lblLamp1_Click);
             // 
             // TallyControl
             // 
@@ -285,6 +299,9 @@
             this.Text = "Tally Control";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlChannelDropDowns.ResumeLayout(false);
+            this.pnlLampLabels.ResumeLayout(false);
+            this.pnlLampLabels.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,17 +318,19 @@
         private System.Windows.Forms.ComboBox cmbPort;
         private System.Windows.Forms.Button btnTallyConnect;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblLamp1;
         private System.Windows.Forms.Button btnLampTest;
         private System.Windows.Forms.Label label4;
+        private System.IO.Ports.SerialPort serialTally;
+        private System.Windows.Forms.Panel pnlChannelDropDowns;
         private System.Windows.Forms.ComboBox cmbTallyChannel4;
         private System.Windows.Forms.ComboBox cmbTallyChannel3;
         private System.Windows.Forms.ComboBox cmbTallyChannel2;
         private System.Windows.Forms.ComboBox cmbTallyChannel1;
+        private System.Windows.Forms.Panel pnlLampLabels;
         private System.Windows.Forms.Label lblLamp4;
         private System.Windows.Forms.Label lblLamp3;
         private System.Windows.Forms.Label lblLamp2;
-        private System.IO.Ports.SerialPort serialTally;
+        private System.Windows.Forms.Label lblLamp1;
     }
 }
 
