@@ -237,7 +237,7 @@ namespace SwitcherPanelCSharp
             int prev_tally_line = -1;
             if (previewId > 0 && previewId < pnlChannelDropDowns.Controls.Count)
             {
-                // Channels in the mixer are one indexed, combo boxes are zero indexed
+                // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)previewId - 1;
 
                 // Work out which electrical channel matches this mixer channel
@@ -249,7 +249,7 @@ namespace SwitcherPanelCSharp
                     prev_tally_line = -1;
                 }
 
-                // And update that label to be red
+                // And update that label to be green (preview colour)
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Green;
             }
 
@@ -258,11 +258,17 @@ namespace SwitcherPanelCSharp
             // Check we actually got a tally-able channel
             if (programId > 0 && programId < pnlChannelDropDowns.Controls.Count)
             {
-                // Channels in the mixer are one indexed, combo boxes are zero indexed
+                // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)programId - 1;
 
                 // Work out which electrical channel matches this mixer channel
                 prog_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex;
+
+                // Discount the blank value at the top
+                if (prog_tally_line == 0)
+                {
+                    prog_tally_line = -1;
+                }
 
                 // And update that label to be red
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
