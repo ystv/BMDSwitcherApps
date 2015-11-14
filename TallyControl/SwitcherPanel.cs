@@ -241,13 +241,8 @@ namespace SwitcherPanelCSharp
                 int combo_index = (int)previewId - 1;
 
                 // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                // This also helpfully ignores the zero value (blank)
                 prev_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
-
-                // Discount the blank value at the top
-                if (prev_tally_line == 0)
-                {
-                    prev_tally_line = -1;
-                }
 
                 // And update that label to be green (preview colour)
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
@@ -262,13 +257,8 @@ namespace SwitcherPanelCSharp
                 int combo_index = (int)programId - 1;
 
                 // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                // This also helpfully ignores the zero value (blank)
                 prog_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
-
-                // Discount the blank value at the top
-                if (prog_tally_line == 0)
-                {
-                    prog_tally_line = -1;
-                }
 
                 // And update that label to be red
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
