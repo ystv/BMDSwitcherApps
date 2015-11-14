@@ -233,15 +233,15 @@ namespace SwitcherPanelCSharp
                 thislbl.BackColor = Color.DarkGray;
             }
 
-            // Work out whether to drive preview (must be before programme so red overrides green)
+            // Work out whether to drive preview
             int prev_tally_line = -1;
             if (previewId > 0 && previewId < pnlChannelDropDowns.Controls.Count)
             {
                 // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)previewId - 1;
 
-                // Work out which electrical channel matches this mixer channel
-                prev_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex;
+                // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                prev_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
 
                 // Discount the blank value at the top
                 if (prev_tally_line == 0)
@@ -250,7 +250,7 @@ namespace SwitcherPanelCSharp
                 }
 
                 // And update that label to be green (preview colour)
-                ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Green;
+                ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
             }
 
             // Work out what to do with programme
@@ -261,8 +261,8 @@ namespace SwitcherPanelCSharp
                 // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)programId - 1;
 
-                // Work out which electrical channel matches this mixer channel
-                prog_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex;
+                // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                prog_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
 
                 // Discount the blank value at the top
                 if (prog_tally_line == 0)
@@ -274,7 +274,16 @@ namespace SwitcherPanelCSharp
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
             }
 
-            reportMessage(" Prog: " + programId + "\n Prev: " + previewId);
+            String statusmessage = " Prog: " + programId + "\n Prev: ";
+            if (previewId > -1)
+            {
+                statusmessage += previewId;
+            }
+            else
+            {
+                statusmessage += "Not in transition";
+            }
+            reportMessage(statusmessage);
 
             // Bail out now if Tally isn't up
             if (!serialTally.IsOpen)
@@ -390,7 +399,8 @@ namespace SwitcherPanelCSharp
                 serialTally.Write("<dd" + i.ToString("D2") + ">\n");
             }
 
-            reportMessage("Testing lamps");
+            reportMessage("Testing lamps (see message box)");
+            MessageBox.Show("Testing Lamps. Click OK to end");
 
             serialTally.Write("<dark>\n");
 
