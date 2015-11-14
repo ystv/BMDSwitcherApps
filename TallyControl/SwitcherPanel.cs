@@ -146,13 +146,15 @@ namespace SwitcherPanelCSharp
 
             if (m_mixEffectBlock1 == null)
             {
-                MessageBox.Show("Unexpected: Could not get first mix effect block", "Error");
+                reportMessage("Unexpected: Could not get first mix effect block", true);
                 return;
             }
 
             // Install MixEffectBlockMonitor callbacks:
             m_mixEffectBlock1.AddCallback(m_mixEffectBlockMonitor);
             UpdateProgramButtonSelection();
+
+            reportMessage("Connection succeeded!");
         }
 
         private void SwitcherDisconnected()
@@ -176,7 +178,11 @@ namespace SwitcherPanelCSharp
 
                 // release reference:
                 m_switcher = null;
+
+                // This probably wasn't good...
+                reportMessage("Switcher Disconnected!!!", true);
             }
+
         }
 
         private void UpdateProgramButtonSelection()
@@ -238,9 +244,12 @@ namespace SwitcherPanelCSharp
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
             }
 
+            reportMessage(" Prog: " + programId + "\n Prev: " + previewId);
+
             // Bail out now if Tally isn't up
             if (!serialTally.IsOpen)
             {
+                reportMessage("Tally not up, not updating");
                 return;
             }
             
@@ -278,13 +287,13 @@ namespace SwitcherPanelCSharp
                 switch (failReason)
                 {
                     case _BMDSwitcherConnectToFailure.bmdSwitcherConnectToFailureNoResponse:
-                        MessageBox.Show("No response from Switcher", "Error");
+                        reportMessage("No response from Switcher", true);
                         break;
                     case _BMDSwitcherConnectToFailure.bmdSwitcherConnectToFailureIncompatibleFirmware:
-                        MessageBox.Show("Switcher has incompatible firmware", "Error");
+                        reportMessage("Switcher has incompatible firmware", true);
                         break;
                     default:
-                        MessageBox.Show("Connection failed for unknown reason", "Error");
+                        reportMessage("Connection failed for unknown reason (is it on?)", true);
                         break;
                 }
                 return;
@@ -332,7 +341,8 @@ namespace SwitcherPanelCSharp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't connect. Error: " + ex.Message);
+
+                reportMessage("Couldn't connect. Error: " + ex.Message, true);
             }
         }
 
@@ -340,7 +350,7 @@ namespace SwitcherPanelCSharp
         {
             if (!serialTally.IsOpen)
             {
-                MessageBox.Show("Tally not up!");
+                reportMessage("Tally not up!", true);
                 return;
             }
 
@@ -350,7 +360,7 @@ namespace SwitcherPanelCSharp
                 serialTally.Write("<dd" + i.ToString("D2") + ">\n");
             }
 
-            MessageBox.Show("Testing lamps");
+            reportMessage("Testing lamps");
 
             serialTally.Write("<dark>\n");
 
@@ -366,6 +376,23 @@ namespace SwitcherPanelCSharp
         private void cmbTally_SelectedIndexChange(object sender, EventArgs e)
         {
             UpdateProgramButtonSelection();
+        }
+
+        /**
+         * Report error using message box (rather than modal dialogs)
+         */
+        private void reportMessage(string errortext, bool iserror = false)
+        {
+            lblMessageData.Text = errortext;
+
+            if (iserror)
+            {
+                lblMessageData.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblMessageData.ForeColor = Color.Black;
+            }
         }
     }
 }

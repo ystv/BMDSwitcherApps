@@ -38,22 +38,26 @@
             this.cmbPort = new System.Windows.Forms.ComboBox();
             this.btnTallyConnect = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLampTest = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.serialTally = new System.IO.Ports.SerialPort(this.components);
-            this.pnlChannelDropDowns = new System.Windows.Forms.Panel();
-            this.cmbTallyChannel4 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel3 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel2 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel1 = new System.Windows.Forms.ComboBox();
             this.pnlLampLabels = new System.Windows.Forms.Panel();
             this.lblLamp4 = new System.Windows.Forms.Label();
             this.lblLamp3 = new System.Windows.Forms.Label();
             this.lblLamp2 = new System.Windows.Forms.Label();
             this.lblLamp1 = new System.Windows.Forms.Label();
+            this.pnlChannelDropDowns = new System.Windows.Forms.Panel();
+            this.cmbTallyChannel4 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel3 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel2 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel1 = new System.Windows.Forms.ComboBox();
+            this.btnLampTest = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.serialTally = new System.IO.Ports.SerialPort(this.components);
+            this.lblMessageHeader = new System.Windows.Forms.Label();
+            this.pnlMessages = new System.Windows.Forms.Panel();
+            this.lblMessageData = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.pnlChannelDropDowns.SuspendLayout();
             this.pnlLampLabels.SuspendLayout();
+            this.pnlChannelDropDowns.SuspendLayout();
+            this.pnlMessages.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -136,27 +140,59 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(15, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(328, 141);
+            this.panel1.Size = new System.Drawing.Size(497, 141);
             this.panel1.TabIndex = 8;
             // 
-            // btnLampTest
+            // pnlLampLabels
             // 
-            this.btnLampTest.Location = new System.Drawing.Point(215, 101);
-            this.btnLampTest.Name = "btnLampTest";
-            this.btnLampTest.Size = new System.Drawing.Size(75, 23);
-            this.btnLampTest.TabIndex = 9;
-            this.btnLampTest.Text = "Lamp Test";
-            this.btnLampTest.UseVisualStyleBackColor = true;
-            this.btnLampTest.Click += new System.EventHandler(this.btnLampTest_Click);
+            this.pnlLampLabels.Controls.Add(this.lblLamp4);
+            this.pnlLampLabels.Controls.Add(this.lblLamp3);
+            this.pnlLampLabels.Controls.Add(this.lblLamp2);
+            this.pnlLampLabels.Controls.Add(this.lblLamp1);
+            this.pnlLampLabels.Location = new System.Drawing.Point(105, 7);
+            this.pnlLampLabels.Name = "pnlLampLabels";
+            this.pnlLampLabels.Size = new System.Drawing.Size(200, 37);
+            this.pnlLampLabels.TabIndex = 11;
             // 
-            // label4
+            // lblLamp4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 57);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Assigned Channel:";
+            this.lblLamp4.AutoSize = true;
+            this.lblLamp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp4.Location = new System.Drawing.Point(164, 4);
+            this.lblLamp4.Name = "lblLamp4";
+            this.lblLamp4.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp4.TabIndex = 7;
+            this.lblLamp4.Text = "4";
+            // 
+            // lblLamp3
+            // 
+            this.lblLamp3.AutoSize = true;
+            this.lblLamp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp3.Location = new System.Drawing.Point(116, 4);
+            this.lblLamp3.Name = "lblLamp3";
+            this.lblLamp3.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp3.TabIndex = 6;
+            this.lblLamp3.Text = "3";
+            // 
+            // lblLamp2
+            // 
+            this.lblLamp2.AutoSize = true;
+            this.lblLamp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp2.Location = new System.Drawing.Point(66, 4);
+            this.lblLamp2.Name = "lblLamp2";
+            this.lblLamp2.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp2.TabIndex = 5;
+            this.lblLamp2.Text = "2";
+            // 
+            // lblLamp1
+            // 
+            this.lblLamp1.AutoSize = true;
+            this.lblLamp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp1.Location = new System.Drawing.Point(16, 4);
+            this.lblLamp1.Name = "lblLamp1";
+            this.lblLamp1.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp1.TabIndex = 4;
+            this.lblLamp1.Text = "1";
             // 
             // pnlChannelDropDowns
             // 
@@ -229,63 +265,63 @@
             this.cmbTallyChannel1.Size = new System.Drawing.Size(32, 21);
             this.cmbTallyChannel1.TabIndex = 8;
             // 
-            // pnlLampLabels
+            // btnLampTest
             // 
-            this.pnlLampLabels.Controls.Add(this.lblLamp4);
-            this.pnlLampLabels.Controls.Add(this.lblLamp3);
-            this.pnlLampLabels.Controls.Add(this.lblLamp2);
-            this.pnlLampLabels.Controls.Add(this.lblLamp1);
-            this.pnlLampLabels.Location = new System.Drawing.Point(105, 7);
-            this.pnlLampLabels.Name = "pnlLampLabels";
-            this.pnlLampLabels.Size = new System.Drawing.Size(200, 37);
-            this.pnlLampLabels.TabIndex = 11;
+            this.btnLampTest.Location = new System.Drawing.Point(215, 101);
+            this.btnLampTest.Name = "btnLampTest";
+            this.btnLampTest.Size = new System.Drawing.Size(75, 23);
+            this.btnLampTest.TabIndex = 9;
+            this.btnLampTest.Text = "Lamp Test";
+            this.btnLampTest.UseVisualStyleBackColor = true;
+            this.btnLampTest.Click += new System.EventHandler(this.btnLampTest_Click);
             // 
-            // lblLamp4
+            // label4
             // 
-            this.lblLamp4.AutoSize = true;
-            this.lblLamp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp4.Location = new System.Drawing.Point(164, 4);
-            this.lblLamp4.Name = "lblLamp4";
-            this.lblLamp4.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp4.TabIndex = 7;
-            this.lblLamp4.Text = "4";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(2, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Assigned Channel:";
             // 
-            // lblLamp3
+            // lblMessageHeader
             // 
-            this.lblLamp3.AutoSize = true;
-            this.lblLamp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp3.Location = new System.Drawing.Point(116, 4);
-            this.lblLamp3.Name = "lblLamp3";
-            this.lblLamp3.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp3.TabIndex = 6;
-            this.lblLamp3.Text = "3";
+            this.lblMessageHeader.AutoSize = true;
+            this.lblMessageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessageHeader.Location = new System.Drawing.Point(3, 5);
+            this.lblMessageHeader.Name = "lblMessageHeader";
+            this.lblMessageHeader.Size = new System.Drawing.Size(74, 13);
+            this.lblMessageHeader.TabIndex = 9;
+            this.lblMessageHeader.Text = "MESSAGES";
             // 
-            // lblLamp2
+            // pnlMessages
             // 
-            this.lblLamp2.AutoSize = true;
-            this.lblLamp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp2.Location = new System.Drawing.Point(66, 4);
-            this.lblLamp2.Name = "lblLamp2";
-            this.lblLamp2.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp2.TabIndex = 5;
-            this.lblLamp2.Text = "2";
+            this.pnlMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMessages.Controls.Add(this.lblMessageData);
+            this.pnlMessages.Controls.Add(this.lblMessageHeader);
+            this.pnlMessages.Location = new System.Drawing.Point(352, 10);
+            this.pnlMessages.Name = "pnlMessages";
+            this.pnlMessages.Size = new System.Drawing.Size(160, 89);
+            this.pnlMessages.TabIndex = 10;
             // 
-            // lblLamp1
+            // lblMessageData
             // 
-            this.lblLamp1.AutoSize = true;
-            this.lblLamp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp1.Location = new System.Drawing.Point(16, 4);
-            this.lblLamp1.Name = "lblLamp1";
-            this.lblLamp1.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp1.TabIndex = 4;
-            this.lblLamp1.Text = "1";
+            this.lblMessageData.AutoSize = true;
+            this.lblMessageData.Location = new System.Drawing.Point(3, 21);
+            this.lblMessageData.MaximumSize = new System.Drawing.Size(150, 60);
+            this.lblMessageData.MinimumSize = new System.Drawing.Size(150, 60);
+            this.lblMessageData.Name = "lblMessageData";
+            this.lblMessageData.Size = new System.Drawing.Size(150, 60);
+            this.lblMessageData.TabIndex = 10;
+            this.lblMessageData.Text = "Hi!";
             // 
             // TallyControl
             // 
             this.AcceptButton = this.buttonConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 258);
+            this.ClientSize = new System.Drawing.Size(528, 258);
+            this.Controls.Add(this.pnlMessages);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnTallyConnect);
             this.Controls.Add(this.cmbPort);
@@ -299,9 +335,11 @@
             this.Text = "Tally Control";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnlChannelDropDowns.ResumeLayout(false);
             this.pnlLampLabels.ResumeLayout(false);
             this.pnlLampLabels.PerformLayout();
+            this.pnlChannelDropDowns.ResumeLayout(false);
+            this.pnlMessages.ResumeLayout(false);
+            this.pnlMessages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,6 +369,9 @@
         private System.Windows.Forms.Label lblLamp3;
         private System.Windows.Forms.Label lblLamp2;
         private System.Windows.Forms.Label lblLamp1;
+        private System.Windows.Forms.Label lblMessageHeader;
+        private System.Windows.Forms.Panel pnlMessages;
+        private System.Windows.Forms.Label lblMessageData;
     }
 }
 
