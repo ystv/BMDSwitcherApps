@@ -39,11 +39,19 @@
             this.btnTallyConnect = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlLampLabels = new System.Windows.Forms.Panel();
+            this.lblLamp8 = new System.Windows.Forms.Label();
+            this.lblLamp7 = new System.Windows.Forms.Label();
+            this.lblLamp6 = new System.Windows.Forms.Label();
+            this.lblLamp5 = new System.Windows.Forms.Label();
             this.lblLamp4 = new System.Windows.Forms.Label();
             this.lblLamp3 = new System.Windows.Forms.Label();
             this.lblLamp2 = new System.Windows.Forms.Label();
             this.lblLamp1 = new System.Windows.Forms.Label();
             this.pnlChannelDropDowns = new System.Windows.Forms.Panel();
+            this.cmbTallyChannel8 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel7 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel6 = new System.Windows.Forms.ComboBox();
+            this.cmbTallyChannel5 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel4 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel3 = new System.Windows.Forms.ComboBox();
             this.cmbTallyChannel2 = new System.Windows.Forms.ComboBox();
@@ -54,14 +62,6 @@
             this.lblMessageHeader = new System.Windows.Forms.Label();
             this.pnlMessages = new System.Windows.Forms.Panel();
             this.lblMessageData = new System.Windows.Forms.Label();
-            this.lblLamp8 = new System.Windows.Forms.Label();
-            this.lblLamp7 = new System.Windows.Forms.Label();
-            this.lblLamp6 = new System.Windows.Forms.Label();
-            this.lblLamp5 = new System.Windows.Forms.Label();
-            this.cmbTallyChannel8 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel7 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel6 = new System.Windows.Forms.ComboBox();
-            this.cmbTallyChannel5 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.pnlLampLabels.SuspendLayout();
             this.pnlChannelDropDowns.SuspendLayout();
@@ -166,6 +166,46 @@
             this.pnlLampLabels.Size = new System.Drawing.Size(393, 37);
             this.pnlLampLabels.TabIndex = 11;
             // 
+            // lblLamp8
+            // 
+            this.lblLamp8.AutoSize = true;
+            this.lblLamp8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp8.Location = new System.Drawing.Point(358, 4);
+            this.lblLamp8.Name = "lblLamp8";
+            this.lblLamp8.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp8.TabIndex = 11;
+            this.lblLamp8.Text = "8";
+            // 
+            // lblLamp7
+            // 
+            this.lblLamp7.AutoSize = true;
+            this.lblLamp7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp7.Location = new System.Drawing.Point(310, 4);
+            this.lblLamp7.Name = "lblLamp7";
+            this.lblLamp7.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp7.TabIndex = 10;
+            this.lblLamp7.Text = "7";
+            // 
+            // lblLamp6
+            // 
+            this.lblLamp6.AutoSize = true;
+            this.lblLamp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp6.Location = new System.Drawing.Point(260, 4);
+            this.lblLamp6.Name = "lblLamp6";
+            this.lblLamp6.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp6.TabIndex = 9;
+            this.lblLamp6.Text = "6";
+            // 
+            // lblLamp5
+            // 
+            this.lblLamp5.AutoSize = true;
+            this.lblLamp5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLamp5.Location = new System.Drawing.Point(212, 4);
+            this.lblLamp5.Name = "lblLamp5";
+            this.lblLamp5.Size = new System.Drawing.Size(20, 24);
+            this.lblLamp5.TabIndex = 8;
+            this.lblLamp5.Text = "5";
+            // 
             // lblLamp4
             // 
             this.lblLamp4.AutoSize = true;
@@ -221,8 +261,73 @@
             this.pnlChannelDropDowns.Size = new System.Drawing.Size(390, 32);
             this.pnlChannelDropDowns.TabIndex = 10;
             // 
+            // cmbTallyChannel8
+            // 
+            this.cmbTallyChannel8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTallyChannel8.FormattingEnabled = true;
+            this.cmbTallyChannel8.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbTallyChannel8.Location = new System.Drawing.Point(353, 5);
+            this.cmbTallyChannel8.Name = "cmbTallyChannel8";
+            this.cmbTallyChannel8.Size = new System.Drawing.Size(32, 21);
+            this.cmbTallyChannel8.TabIndex = 12;
+            // 
+            // cmbTallyChannel7
+            // 
+            this.cmbTallyChannel7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTallyChannel7.FormattingEnabled = true;
+            this.cmbTallyChannel7.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbTallyChannel7.Location = new System.Drawing.Point(304, 5);
+            this.cmbTallyChannel7.Name = "cmbTallyChannel7";
+            this.cmbTallyChannel7.Size = new System.Drawing.Size(32, 21);
+            this.cmbTallyChannel7.TabIndex = 11;
+            // 
+            // cmbTallyChannel6
+            // 
+            this.cmbTallyChannel6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTallyChannel6.FormattingEnabled = true;
+            this.cmbTallyChannel6.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbTallyChannel6.Location = new System.Drawing.Point(254, 5);
+            this.cmbTallyChannel6.Name = "cmbTallyChannel6";
+            this.cmbTallyChannel6.Size = new System.Drawing.Size(32, 21);
+            this.cmbTallyChannel6.TabIndex = 10;
+            // 
+            // cmbTallyChannel5
+            // 
+            this.cmbTallyChannel5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTallyChannel5.FormattingEnabled = true;
+            this.cmbTallyChannel5.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbTallyChannel5.Location = new System.Drawing.Point(204, 5);
+            this.cmbTallyChannel5.Name = "cmbTallyChannel5";
+            this.cmbTallyChannel5.Size = new System.Drawing.Size(32, 21);
+            this.cmbTallyChannel5.TabIndex = 9;
+            // 
             // cmbTallyChannel4
             // 
+            this.cmbTallyChannel4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTallyChannel4.FormattingEnabled = true;
             this.cmbTallyChannel4.Items.AddRange(new object[] {
             "1",
@@ -238,6 +343,7 @@
             // 
             // cmbTallyChannel3
             // 
+            this.cmbTallyChannel3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTallyChannel3.FormattingEnabled = true;
             this.cmbTallyChannel3.Items.AddRange(new object[] {
             "1",
@@ -253,6 +359,7 @@
             // 
             // cmbTallyChannel2
             // 
+            this.cmbTallyChannel2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTallyChannel2.FormattingEnabled = true;
             this.cmbTallyChannel2.Items.AddRange(new object[] {
             "1",
@@ -268,6 +375,7 @@
             // 
             // cmbTallyChannel1
             // 
+            this.cmbTallyChannel1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTallyChannel1.FormattingEnabled = true;
             this.cmbTallyChannel1.Items.AddRange(new object[] {
             "1",
@@ -330,106 +438,6 @@
             this.lblMessageData.Size = new System.Drawing.Size(150, 60);
             this.lblMessageData.TabIndex = 10;
             this.lblMessageData.Text = "Hi!";
-            // 
-            // lblLamp8
-            // 
-            this.lblLamp8.AutoSize = true;
-            this.lblLamp8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp8.Location = new System.Drawing.Point(358, 4);
-            this.lblLamp8.Name = "lblLamp8";
-            this.lblLamp8.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp8.TabIndex = 11;
-            this.lblLamp8.Text = "8";
-            // 
-            // lblLamp7
-            // 
-            this.lblLamp7.AutoSize = true;
-            this.lblLamp7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp7.Location = new System.Drawing.Point(310, 4);
-            this.lblLamp7.Name = "lblLamp7";
-            this.lblLamp7.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp7.TabIndex = 10;
-            this.lblLamp7.Text = "7";
-            // 
-            // lblLamp6
-            // 
-            this.lblLamp6.AutoSize = true;
-            this.lblLamp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp6.Location = new System.Drawing.Point(260, 4);
-            this.lblLamp6.Name = "lblLamp6";
-            this.lblLamp6.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp6.TabIndex = 9;
-            this.lblLamp6.Text = "6";
-            // 
-            // lblLamp5
-            // 
-            this.lblLamp5.AutoSize = true;
-            this.lblLamp5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLamp5.Location = new System.Drawing.Point(212, 4);
-            this.lblLamp5.Name = "lblLamp5";
-            this.lblLamp5.Size = new System.Drawing.Size(20, 24);
-            this.lblLamp5.TabIndex = 8;
-            this.lblLamp5.Text = "5";
-            // 
-            // cmbTallyChannel8
-            // 
-            this.cmbTallyChannel8.FormattingEnabled = true;
-            this.cmbTallyChannel8.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbTallyChannel8.Location = new System.Drawing.Point(353, 5);
-            this.cmbTallyChannel8.Name = "cmbTallyChannel8";
-            this.cmbTallyChannel8.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel8.TabIndex = 12;
-            // 
-            // cmbTallyChannel7
-            // 
-            this.cmbTallyChannel7.FormattingEnabled = true;
-            this.cmbTallyChannel7.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbTallyChannel7.Location = new System.Drawing.Point(304, 5);
-            this.cmbTallyChannel7.Name = "cmbTallyChannel7";
-            this.cmbTallyChannel7.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel7.TabIndex = 11;
-            // 
-            // cmbTallyChannel6
-            // 
-            this.cmbTallyChannel6.FormattingEnabled = true;
-            this.cmbTallyChannel6.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbTallyChannel6.Location = new System.Drawing.Point(254, 5);
-            this.cmbTallyChannel6.Name = "cmbTallyChannel6";
-            this.cmbTallyChannel6.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel6.TabIndex = 10;
-            // 
-            // cmbTallyChannel5
-            // 
-            this.cmbTallyChannel5.FormattingEnabled = true;
-            this.cmbTallyChannel5.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbTallyChannel5.Location = new System.Drawing.Point(204, 5);
-            this.cmbTallyChannel5.Name = "cmbTallyChannel5";
-            this.cmbTallyChannel5.Size = new System.Drawing.Size(32, 21);
-            this.cmbTallyChannel5.TabIndex = 9;
             // 
             // TallyControl
             // 
