@@ -91,15 +91,25 @@ namespace SwitcherPanelCSharp
             for (int i = 0; i < pnlChannelDropDowns.Controls.Count; i++)
             {
                 ComboBox thiscmb = (ComboBox)pnlChannelDropDowns.Controls[i];
-                thiscmb.SelectedIndex = i;
-
-                thiscmb.SelectedIndexChanged += new EventHandler(cmbTally_SelectedIndexChange);
 
                 thiscmb.Items.Clear();
-                for (int j = 0; j < TALLY_CHANNEL_COUNT; j++)
+                thiscmb.Items.Add("");
+                for (int j = 1; j <= TALLY_CHANNEL_COUNT; j++)
                 {
-                    thiscmb.Items.Add((j + 1).ToString());
+                    thiscmb.Items.Add(j.ToString());
                 }
+
+                if (i < TALLY_CHANNEL_COUNT)
+                {
+                    // i is zero-indexed but tally channels are one-indexed (zero is the blank)
+                    thiscmb.SelectedIndex = i + 1;
+                }
+                else
+                {
+                    thiscmb.SelectedIndex = 0;
+                }
+
+                thiscmb.SelectedIndexChanged += new EventHandler(cmbTally_SelectedIndexChange);
             }
 
         }
@@ -114,11 +124,19 @@ namespace SwitcherPanelCSharp
             pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel2, 1);
             pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel3, 2);
             pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel4, 3);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel5, 4);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel6, 5);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel7, 6);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel8, 7);
 
             pnlLampLabels.Controls.SetChildIndex(lblLamp1, 0);
             pnlLampLabels.Controls.SetChildIndex(lblLamp2, 1);
             pnlLampLabels.Controls.SetChildIndex(lblLamp3, 2);
             pnlLampLabels.Controls.SetChildIndex(lblLamp4, 3);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp5, 4);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp6, 5);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp7, 6);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp8, 7);
         }
 
         private void SwitcherConnected()
@@ -224,6 +242,12 @@ namespace SwitcherPanelCSharp
 
                 // Work out which electrical channel matches this mixer channel
                 prev_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex;
+
+                // Discount the blank value at the top
+                if (prev_tally_line == 0)
+                {
+                    prev_tally_line = -1;
+                }
 
                 // And update that label to be red
                 ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Green;
