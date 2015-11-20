@@ -51,6 +51,8 @@ namespace SwitcherPanelCSharp
 
         private List<InputMonitor> m_inputMonitors = new List<InputMonitor>();
 
+        private const int TALLY_CHANNEL_COUNT = 6;
+
         public TallyControl()
         {
             InitializeComponent();
@@ -83,11 +85,58 @@ namespace SwitcherPanelCSharp
                 cmbPort.Items.Add(s);
             }
 
-            // Defaults
-            cmbTallyChannel1.SelectedIndex = 0;
-            cmbTallyChannel2.SelectedIndex = 1;
-            cmbTallyChannel3.SelectedIndex = 2;
-            cmbTallyChannel4.SelectedIndex = 3;
+            ForceControlOrderingInCollection();
+
+            // Configure all the drop-downs for channel assigns
+            for (int i = 0; i < pnlChannelDropDowns.Controls.Count; i++)
+            {
+                ComboBox thiscmb = (ComboBox)pnlChannelDropDowns.Controls[i];
+
+                thiscmb.Items.Clear();
+                thiscmb.Items.Add("");
+                for (int j = 1; j <= TALLY_CHANNEL_COUNT; j++)
+                {
+                    thiscmb.Items.Add(j.ToString());
+                }
+
+                if (i < TALLY_CHANNEL_COUNT)
+                {
+                    // i is zero-indexed but tally channels are one-indexed (zero is the blank)
+                    thiscmb.SelectedIndex = i + 1;
+                }
+                else
+                {
+                    thiscmb.SelectedIndex = 0;
+                }
+
+                thiscmb.SelectedIndexChanged += new EventHandler(cmbTally_SelectedIndexChange);
+            }
+
+        }
+
+        /// <summary>
+        /// Force controls into the correct ordering in their parent collections
+        /// THIS FUNCTION MUST BE UPDATED IF THE CONTROLS CHANGE OR ORDERING WILL BE WRONG (maybe)
+        /// </summary> 
+        private void ForceControlOrderingInCollection()
+        {
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel1, 0);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel2, 1);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel3, 2);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel4, 3);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel5, 4);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel6, 5);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel7, 6);
+            pnlChannelDropDowns.Controls.SetChildIndex(cmbTallyChannel8, 7);
+
+            pnlLampLabels.Controls.SetChildIndex(lblLamp1, 0);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp2, 1);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp3, 2);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp4, 3);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp5, 4);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp6, 5);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp7, 6);
+            pnlLampLabels.Controls.SetChildIndex(lblLamp8, 7);
         }
 
         private void SwitcherConnected()
@@ -115,13 +164,15 @@ namespace SwitcherPanelCSharp
 
             if (m_mixEffectBlock1 == null)
             {
-                MessageBox.Show("Unexpected: Could not get first mix effect block", "Error");
+                reportMessage("Unexpected: Could not get first mix effect block", true);
                 return;
             }
 
             // Install MixEffectBlockMonitor callbacks:
             m_mixEffectBlock1.AddCallback(m_mixEffectBlockMonitor);
             UpdateProgramButtonSelection();
+
+            reportMessage("Connection succeeded!");
         }
 
         private void SwitcherDisconnected()
@@ -145,7 +196,11 @@ namespace SwitcherPanelCSharp
 
                 // release reference:
                 m_switcher = null;
+
+                // This probably wasn't good...
+                reportMessage("Switcher Disconnected!!!", true);
             }
+
         }
 
         private void UpdateProgramButtonSelection()
@@ -172,90 +227,74 @@ namespace SwitcherPanelCSharp
                 return;
             }
 
-            lblLamp1.BackColor = Color.DarkGray;
-            lblLamp2.BackColor = Color.DarkGray;
-            lblLamp3.BackColor = Color.DarkGray;
-            lblLamp4.BackColor = Color.DarkGray;
-
-            // Work out which Tally channel to drive
-            int channelno = -1;
-            switch (programId)
+            // Clear all the backgrounds
+            foreach (Label thislbl in pnlLampLabels.Controls) 
             {
-                case 5:
-                    channelno = cmbTallyChannel1.SelectedIndex;
-                    lblLamp1.BackColor = Color.Red;
-                    break;
-                case 6:
-                    channelno = cmbTallyChannel2.SelectedIndex;
-                    lblLamp2.BackColor = Color.Red;
-                    break;
-                case 7:
-                    channelno = cmbTallyChannel3.SelectedIndex;
-                    lblLamp3.BackColor = Color.Red;
-                    break;
-                case 8:
-                    channelno = cmbTallyChannel4.SelectedIndex;
-                    lblLamp4.BackColor = Color.Red;
-                    break;
-                default:
-                    break;
+                thislbl.BackColor = Color.DarkGray;
             }
 
-            // Bail out if Tally isn't up
+            // Work out whether to drive preview
+            int prev_tally_line = -1;
+            if (previewId > 0 && previewId < pnlChannelDropDowns.Controls.Count)
+            {
+                // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
+                int combo_index = (int)previewId - 1;
+
+                // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                // This also helpfully ignores the zero value (blank)
+                prev_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
+
+                // And update that label to be green (preview colour)
+                ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
+            }
+
+            // Work out what to do with programme
+            int prog_tally_line = -1;
+            // Check we actually got a tally-able channel
+            if (programId > 0 && programId < pnlChannelDropDowns.Controls.Count)
+            {
+                // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
+                int combo_index = (int)programId - 1;
+
+                // Work out which electrical channel matches this mixer channel (electrical channels zero-indexed)
+                // This also helpfully ignores the zero value (blank)
+                prog_tally_line = ((ComboBox)pnlChannelDropDowns.Controls[combo_index]).SelectedIndex - 1;
+
+                // And update that label to be red
+                ((Label)pnlLampLabels.Controls[combo_index]).BackColor = Color.Red;
+            }
+
+            String statusmessage = " Prog: " + programId + "\n Prev: ";
+            if (previewId > -1)
+            {
+                statusmessage += previewId;
+            }
+            else
+            {
+                statusmessage += "Not in transition";
+            }
+            reportMessage(statusmessage);
+
+            // Bail out now if Tally isn't up
             if (!serialTally.IsOpen)
             {
+                reportMessage("Tally not up, not updating");
                 return;
             }
             
             // Ok, so far, so good. Now turn off everthing already on
             serialTally.WriteLine("<dark>");
 
-            if (-1 == channelno)
+            if (-1 != prog_tally_line)
             {
-                // No Tally channel selected, nothing to do
-                return;
+                // Drive programme
+                serialTally.Write("<dd" + prog_tally_line.ToString("D2") + ">\n");
             }
 
-            // And drive our chosen line
-            serialTally.Write("<dd0" + channelno.ToString() + ">\n");
-
-            // Drive preview?
-            if (previewId > -1)
+            if (-1 != prev_tally_line)
             {
-                // Work out which Tally channel to drive
-                int prevchannel = 0;
-                switch (previewId)
-                {
-                    case 5:
-                        prevchannel = cmbTallyChannel1.SelectedIndex;
-                        lblLamp1.BackColor = Color.Red;
-                        break;
-                    case 6:
-                        prevchannel = cmbTallyChannel2.SelectedIndex;
-                        lblLamp2.BackColor = Color.Red;
-                        break;
-                    case 7:
-                        prevchannel = cmbTallyChannel3.SelectedIndex;
-                        lblLamp3.BackColor = Color.Red;
-                        break;
-                    case 8:
-                        prevchannel = cmbTallyChannel4.SelectedIndex;
-                        lblLamp4.BackColor = Color.Red;
-                        break;
-                    default:
-                        MessageBox.Show("Where the hell did that channel " +
-                            prevchannel.ToString() + " come from??");
-                        break;
-                }
-
-                if (-1 == prevchannel)
-                {
-                    // No Tally channel selected, nothing to do
-                    return;
-                }
-
-                // And drive our chosen line
-                serialTally.Write("<dd0" + prevchannel.ToString() + ">\n");
+                // Drive preview
+                serialTally.Write("<dd" + prev_tally_line.ToString("D2") + ">\n");
             }
         }
 
@@ -277,13 +316,13 @@ namespace SwitcherPanelCSharp
                 switch (failReason)
                 {
                     case _BMDSwitcherConnectToFailure.bmdSwitcherConnectToFailureNoResponse:
-                        MessageBox.Show("No response from Switcher", "Error");
+                        reportMessage("No response from Switcher", true);
                         break;
                     case _BMDSwitcherConnectToFailure.bmdSwitcherConnectToFailureIncompatibleFirmware:
-                        MessageBox.Show("Switcher has incompatible firmware", "Error");
+                        reportMessage("Switcher has incompatible firmware", true);
                         break;
                     default:
-                        MessageBox.Show("Connection failed for unknown reason", "Error");
+                        reportMessage("Connection failed for unknown reason (is it on?)", true);
                         break;
                 }
                 return;
@@ -313,16 +352,6 @@ namespace SwitcherPanelCSharp
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblLamp1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnTallyConnect_Click(object sender, EventArgs e)
         {
             serialTally.Close();
@@ -341,7 +370,8 @@ namespace SwitcherPanelCSharp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't connect. Error: " + ex.Message);
+
+                reportMessage("Couldn't connect. Error: " + ex.Message, true);
             }
         }
 
@@ -349,18 +379,18 @@ namespace SwitcherPanelCSharp
         {
             if (!serialTally.IsOpen)
             {
-                MessageBox.Show("Tally not up!");
+                reportMessage("Tally not up!", true);
                 return;
             }
 
-            serialTally.Write("<dd00>\n");
-            serialTally.Write("<dd01>\n");
-            serialTally.Write("<dd02>\n");
-            serialTally.Write("<dd03>\n");
-            serialTally.Write("<dd04>\n");
-            serialTally.Write("<dd05>\n");
+            // Turn on every lamp we know about
+            for (int i = 0; i < TALLY_CHANNEL_COUNT; i++)
+            {
+                serialTally.Write("<dd" + i.ToString("D2") + ">\n");
+            }
 
-            MessageBox.Show("Testing lamps");
+            reportMessage("Testing lamps (see message box)");
+            MessageBox.Show("Testing Lamps. Click OK to end");
 
             serialTally.Write("<dark>\n");
 
@@ -370,24 +400,29 @@ namespace SwitcherPanelCSharp
             }
         }
 
-        private void cmbTallyChannel1_SelectedIndexChanged(object sender, EventArgs e)
+        /**
+         * If we change a channel routing, trigger an update of everything (sent by changes on all dropdowns) 
+         */
+        private void cmbTally_SelectedIndexChange(object sender, EventArgs e)
         {
             UpdateProgramButtonSelection();
         }
 
-        private void cmbTallyChannel2_SelectedIndexChanged(object sender, EventArgs e)
+        /**
+         * Report error using message box (rather than modal dialogs)
+         */
+        private void reportMessage(string errortext, bool iserror = false)
         {
-            UpdateProgramButtonSelection();
-        }
+            lblMessageData.Text = errortext;
 
-        private void cmbTallyChannel3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateProgramButtonSelection();
-        }
-
-        private void cmbTallyChannel4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateProgramButtonSelection();
+            if (iserror)
+            {
+                lblMessageData.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblMessageData.ForeColor = Color.Black;
+            }
         }
     }
 }
