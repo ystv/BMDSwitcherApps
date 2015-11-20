@@ -235,7 +235,7 @@ namespace SwitcherPanelCSharp
 
             // Work out whether to drive preview
             int prev_tally_line = -1;
-            if (previewId > 0 && previewId < pnlChannelDropDowns.Controls.Count)
+            if (previewId > 0 && previewId <= pnlChannelDropDowns.Controls.Count)
             {
                 // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)previewId - 1;
@@ -251,7 +251,7 @@ namespace SwitcherPanelCSharp
             // Work out what to do with programme
             int prog_tally_line = -1;
             // Check we actually got a tally-able channel
-            if (programId > 0 && programId < pnlChannelDropDowns.Controls.Count)
+            if (programId > 0 && programId <= pnlChannelDropDowns.Controls.Count)
             {
                 // Channels in the mixer are one indexed, combo boxes in the controlset are zero indexed
                 int combo_index = (int)programId - 1;
