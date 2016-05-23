@@ -43,7 +43,7 @@ namespace SwitcherPanelCSharp
         {
         }
 
-        void IBMDSwitcherCallback.Notify(_BMDSwitcherEventType eventType)
+        void IBMDSwitcherCallback.Notify(_BMDSwitcherEventType eventType, _BMDSwitcherVideoMode coreVideoMode)
         {
             if (eventType == _BMDSwitcherEventType.bmdSwitcherEventTypeDisconnected)
             {
@@ -147,11 +147,11 @@ namespace SwitcherPanelCSharp
             m_input = input;
         }
 
-        void IBMDSwitcherInputCallback.PropertyChanged(_BMDSwitcherInputPropertyId propId)
+        void IBMDSwitcherInputCallback.Notify(_BMDSwitcherInputEventType eventType)
         {
-            switch (propId)
+            switch (eventType)
             {
-                case _BMDSwitcherInputPropertyId.bmdSwitcherInputPropertyIdLongName:
+                case _BMDSwitcherInputEventType.bmdSwitcherInputEventTypeLongNameChanged:
                     if (LongNameChanged != null)
                         LongNameChanged(this, null);
                     break;
